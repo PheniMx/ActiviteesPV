@@ -1,0 +1,302 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Activités Puerto Vallarta</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;800&display=swap">
+<style>
+/* Layout: sticky name bar on top, filter chips, one-column activity cards on a phone, grid on wide screens, results panel below. */
+:root{
+  --bg:#EEF8F7; --card:#FFFFFF; --ink:#0E3B43; --muted:#4F7178; --line:#CDE4E2;
+  --accent:#E0457B; --sun:#FFC93C; --leaf:#2E9E6B; --sea:#1B8FA6; --warn:#B8610B;
+  --love:#E0457B; --ok:#2E9E6B; --meh:#7B8A8E;
+  --display:"Baloo 2","Trebuchet MS",system-ui,sans-serif; --body:"Nunito",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B2328; --card:#12333A; --ink:#E8F6F4; --muted:#9CC0C4; --line:#24505A;
+  --accent:#FF6A9B; --sun:#FFC93C; --leaf:#4CC38A; --sea:#4CC3DA; --warn:#F0A04B;
+  --love:#FF6A9B; --ok:#4CC38A; --meh:#8FA6AA; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B2328; --card:#12333A; --ink:#E8F6F4; --muted:#9CC0C4; --line:#24505A;
+  --accent:#FF6A9B; --sun:#FFC93C; --leaf:#4CC38A; --sea:#4CC3DA; --warn:#F0A04B;
+  --love:#FF6A9B; --ok:#4CC38A; --meh:#8FA6AA; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0;text-wrap:balance}
+header{padding:28px 0 12px}
+h1{font-size:clamp(30px,7vw,48px);font-weight:800}
+.sub{color:var(--muted);margin:8px 0 0;max-width:60ch}
+.dates{display:inline-block;margin-top:12px;background:var(--sun);color:#0E3B43;font-weight:800;border-radius:999px;padding:4px 14px;font-size:14px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.who{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.who label{font-weight:800}
+.who input{font:inherit;padding:10px 14px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);min-width:0;flex:1 1 160px;max-width:260px}
+.who input:focus-visible,button:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
+.count{color:var(--muted);font-size:14px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:thin}
+.chip{flex:0 0 auto;font:inherit;font-weight:700;font-size:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px;padding:18px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card h3{font-size:21px;font-weight:600}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:800;border-radius:999px;padding:2px 10px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.tag.free{background:var(--leaf);color:#06281A;border-color:var(--leaf)}
+.tag.paid{background:var(--sun);color:#3A2A00;border-color:var(--sun)}
+.tag.tbc{background:transparent;color:var(--warn);border-color:var(--warn)}
+.tag.early{background:var(--sea);color:#04262D;border-color:var(--sea)}
+.card p{margin:0;color:var(--muted);font-size:15px;flex:1}
+.liens{display:flex;gap:8px;flex-wrap:wrap}
+.lien{font-weight:800;font-size:14px;text-decoration:none;color:var(--sea);border:2px solid var(--line);border-radius:12px;padding:8px 12px;min-height:40px;display:inline-flex;align-items:center;background:var(--bg)}
+.lien:hover{border-color:var(--sea)}
+.lien:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
+.votes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.v{font:inherit;font-weight:800;font-size:14px;padding:10px 4px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;min-height:48px}
+.v span{display:block;font-size:20px;line-height:1.1}
+.v[aria-pressed="true"][data-v="love"]{background:var(--love);border-color:var(--love);color:#fff}
+.v[aria-pressed="true"][data-v="ok"]{background:var(--ok);border-color:var(--ok);color:#04200F}
+.v[aria-pressed="true"][data-v="meh"]{background:var(--meh);border-color:var(--meh);color:#071518}
+.card.off{opacity:.55;border-style:dashed}
+.editzone{border-top:1px dashed var(--line);padding-top:10px;display:flex;flex-direction:column;gap:8px}
+.editzone .row{margin-bottom:0}
+.edlabel{font-weight:800;font-size:14px}
+.editzone textarea{font:inherit;width:100%;box-sizing:border-box;padding:10px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
+.editzone textarea:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:8px}
+.panel h2{font-size:26px;margin-bottom:6px}
+.panel p{color:var(--muted);margin:0 0 12px}
+.act{font:inherit;font-weight:800;border:0;border-radius:12px;padding:12px 18px;background:var(--accent);color:#fff;cursor:pointer;min-height:48px}
+.act.alt{background:var(--bg);color:var(--ink);border:2px solid var(--line)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td:first-child{white-space:normal;min-width:160px}
+.empty{color:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin-top:14px}
+@media (prefers-reduced-motion:no-preference){.v,.chip,.act{transition:background .15s,transform .1s}.v:active{transform:scale(.97)}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Nos activités à Puerto Vallarta</h1>
+  <p class="sub">Regarde les photos et la carte de chaque activité, puis touche pour dire ce que tu en penses. Chacun écrit son prénom en haut avant de voter.</p>
+  <span class="dates">10 décembre au 27 janvier</span>
+</header>
+
+<div class="bar">
+  <div class="who">
+    <label for="nom">Mon prénom</label>
+    <input id="nom" type="text" autocomplete="off" placeholder="Écris ton prénom" maxlength="30">
+    <span class="count" id="compte"></span>
+    
+  </div>
+  <div class="chips" id="chips" role="group" aria-label="Filtrer par catégorie"></div>
+</div>
+
+<div class="grid" id="grille"></div>
+
+<section class="panel" id="resultats" aria-labelledby="rt">
+  <h2 id="rt">Les résultats</h2>
+  <p>Les votes sont gardés sur cet appareil, par prénom. Pour tout regrouper, copie le résumé et envoie-le par texto.</p>
+  <div class="row">
+    <button class="act" id="copier" type="button">Copier le résumé</button>
+    <button class="act alt" id="effacer" type="button">Effacer mes votes</button>
+  </div>
+  <div class="tablewrap" id="tableau"></div>
+  <p class="note" id="msg" role="status"></p>
+  <p class="note">Les prix et les temps de route sont des ordres de grandeur à confirmer avant de partir.</p>
+</section>
+</div>
+
+<script>
+/* c: catégorie, cost: free|low|paid|tbc, early: à faire au début du séjour */
+var A=[
+{id:"muertos",t:"Playa Los Muertos",c:"Gratuit en ville",cost:"free",d:"La plage du centre, avec le quai et les sculptures."},
+{id:"conchas",t:"Playa Conchas Chinas",c:"Plages",cost:"free",d:"De petites criques plus calmes, au sud du centre."},
+{id:"malecon",t:"Le Malecón le soir",c:"Gratuit en ville",cost:"free",d:"Sculptures, artistes de rue et promenade au bord de l'eau."},
+{id:"cuale",t:"Île de la rivière Cuale",c:"Gratuit en ville",cost:"free",d:"Un petit marché, des iguanes et des chats en plein centre."},
+{id:"mercado",t:"Mercado Municipal",c:"Gratuit en ville",cost:"free",d:"Goûter des fruits tropicaux et des tacos pas chers."},
+{id:"bus",t:"Prendre le bus public",c:"Gratuit en ville",cost:"low",d:"Quelques pesos le trajet, et déjà une aventure."},
+{id:"jardin",t:"Jardin botanique et baignade dans la rivière",c:"Nature et baignade",cost:"low",d:"Sentiers, orchidées, colibris, puis la rivière pour se baigner."},
+{id:"palomaria",t:"Cascada de Palo María",c:"Nature et baignade",cost:"tbc",early:1,d:"Une cascade où se baigner. À faire tôt, avant que l'eau baisse. Confirmer l'accès et un petit droit d'entrée."},
+{id:"mismaloya",t:"Cascadas de Mismaloya",c:"Nature et baignade",cost:"tbc",d:"Si l'accès est possible. À confirmer avant d'y aller."},
+{id:"boca",t:"Boca de Tomatlán",c:"Nature et baignade",cost:"low",d:"Village de pêcheurs, sentier vers la plage Colomitos, taxi-bateau possible vers Las Ánimas ou Yelapa."},
+{id:"tortues",t:"Libération de bébés tortues",c:"Nature et baignade",cost:"tbc",early:1,d:"La saison va d'environ août à décembre, et des libérations peuvent se prolonger en janvier. À faire tôt après l'arrivée, après avoir confirmé les dates avec un camp de tortues. Souvent gratuit ou à donation."},
+{id:"guacamayas",t:"Santuario de las Guacamayas",c:"Nature et baignade",cost:"tbc",d:"Un sanctuaire d'oiseaux. Prix et horaires à confirmer."},
+{id:"mariposario",t:"Mariposario Jardín Mágico",c:"Nature et baignade",cost:"tbc",d:"Un sanctuaire de papillons. Prix et horaires à confirmer."},
+{id:"nogalito",t:"Nogalito EcoADVENTURE",c:"Nature et baignade",cost:"tbc",d:"Prix et activités à confirmer."},
+{id:"huerta",t:"La Huerta BBQ & Grill (un mercredi)",c:"Sorties locales",cost:"tbc",d:"Un BBQ le mercredi, avec baignade dans la rivière juste à côté."},
+{id:"patioazul",t:"Patio Azul",c:"Sorties locales",cost:"tbc",d:"Une piscine avec une belle vue. Conditions d'accès à confirmer."},
+{id:"mirador",t:"Mirador de Puerto Vallarta",c:"Sorties locales",cost:"free",d:"Un point de vue sur la ville et la baie."},
+{id:"lindavista",t:"Mirador de Lindavista",c:"Sorties locales",cost:"tbc",d:"Un autre point de vue sur la baie."},
+{id:"destiladeras",t:"Playa Destiladeras",c:"Plages",cost:"free",d:"Une plage à la demi-journée, sur le chemin de Punta de Mita."},
+{id:"nuevonayarit",t:"Playa Nuevo Nayarit",c:"Plages",cost:"free",d:"Belle plage avec de longues vagues pour faire du body surf."},
+{id:"puntamita",t:"Punta de Mita",c:"Plages",cost:"free",d:"Plus proche que Sayulita. Facile à combiner avec Destiladeras."},
+{id:"tyroliennes",t:"Tyroliennes (zip-line)",c:"Sorties payantes",cost:"paid",d:"La grosse dose d'adrénaline. Compter des centaines de pesos par personne."},
+{id:"baleines",t:"Observation des baleines",c:"Sorties payantes",cost:"paid",d:"Meilleures chances de la fin décembre à janvier."},
+{id:"snorkel",t:"Snorkeling aux Arcos ou aux Marietas",c:"Sorties payantes",cost:"paid",d:"En bateau. Prix à vérifier."},
+{id:"aquaventuras",t:"Aquaventuras Park",c:"Parcs aquatiques",cost:"paid",d:"Un parc aquatique public à Nuevo Vallarta, au nord de la baie, avec des billets à la journée. Tarifs et horaires à confirmer."},
+{id:"splash",t:"Splash Parque Acuático",c:"Parcs aquatiques",cost:"paid",d:"Un autre parc aquatique public à Nuevo Vallarta. Environ 30 minutes de route. Tarifs et horaires à confirmer."},
+{id:"sayulita",t:"Sayulita, avec un cours de surf",c:"Escapades en voiture",cost:"tbc",d:"Une journée ou une nuit et deux jours. Un bon endroit pour débuter en surf. Environ 1 h de route."},
+{id:"sanpancho",t:"San Pancho",c:"Escapades en voiture",cost:"low",d:"Plus tranquille que Sayulita, tout près."},
+{id:"sansebastian",t:"San Sebastián del Oeste",c:"Escapades en voiture",cost:"low",d:"Un village de montagne plus frais, à environ 2 h de route."},
+{id:"perula",t:"Punta Perula (une nuit)",c:"Escapades en voiture",cost:"tbc",d:"Baie de Chamela, plage calme et îles pour le snorkeling. Environ 2 h 30 à 3 h de route."},
+{id:"guayabitos",t:"Playa de Guayabitos",c:"Escapades en voiture",cost:"low",d:"Une plage familiale au nord, à confirmer sur la carte pour le temps de route."},
+{id:"guadalupe",t:"Fête de la Vierge de Guadalupe (12 décembre)",c:"Fêtes",cost:"free",early:1,d:"Processions et ambiance dans les rues."},
+{id:"posadas",t:"Posadas et piñatas (16 au 24 décembre)",c:"Fêtes",cost:"free",d:"Des fêtes de quartier avant Noël."},
+{id:"rois",t:"Jour des Rois (6 janvier)",c:"Fêtes",cost:"free",d:"La rosca de reyes, à goûter."}
+];
+var CATS=["Tout"].concat(A.reduce(function(a,x){if(a.indexOf(x.c)<0)a.push(x.c);return a},[]));
+var COST={free:["Gratuit","free"],low:["Pas cher","free"],paid:["Payant","paid"],tbc:["Prix à confirmer","tbc"]};
+/* Requêtes Google: [carte, photos]. null = pas de carte (activité qui n'a pas d'adresse). */
+var Q={
+muertos:["Playa Los Muertos, Puerto Vallarta"],
+conchas:["Playa Conchas Chinas, Puerto Vallarta"],
+malecon:["Malecón de Puerto Vallarta"],
+cuale:["Isla Río Cuale, Puerto Vallarta"],
+mercado:["Mercado Municipal Río Cuale, Puerto Vallarta"],
+bus:[null,"autobus urbano Puerto Vallarta"],
+jardin:["Vallarta Botanical Gardens, Jalisco"],
+palomaria:["Cascada Palo María, Puerto Vallarta"],
+mismaloya:["Cascadas de Mismaloya, Puerto Vallarta"],
+boca:["Boca de Tomatlán, Jalisco"],
+tortues:["campamento tortuguero Puerto Vallarta","liberación bebés tortugas Puerto Vallarta"],
+guacamayas:["Santuario de las Guacamayas, Puerto Vallarta"],
+mariposario:["Mariposario Jardín Mágico, Puerto Vallarta"],
+nogalito:["https://maps.app.goo.gl/Mef74Zdb1k5Q3ncZA","Nogalito EcoAdventure Puerto Vallarta"],
+huerta:["La Huerta BBQ & Grill, Puerto Vallarta"],
+patioazul:["Patio Azul, Puerto Vallarta"],
+mirador:["Mirador de Puerto Vallarta"],
+lindavista:["Mirador de Lindavista, Puerto Vallarta"],
+destiladeras:["Playa Destiladeras, Nayarit"],
+nuevonayarit:["https://maps.app.goo.gl/8EkaRWwhrYAgn4tu8?g_st=ic","Playa Nuevo Nayarit, Nayarit"],
+puntamita:["Punta de Mita, Nayarit"],
+tyroliennes:["canopy zip line Puerto Vallarta","zip line canopy Puerto Vallarta"],
+baleines:["whale watching Puerto Vallarta","baleines à bosse Puerto Vallarta"],
+snorkel:["Los Arcos Puerto Vallarta","snorkeling Los Arcos Marietas Puerto Vallarta"],
+aquaventuras:["Aquaventuras Park, Nuevo Vallarta"],
+splash:["Splash Parque Acuático, Nuevo Vallarta"],
+sayulita:["Sayulita, Nayarit","Sayulita surf"],
+sanpancho:["San Pancho, Nayarit"],
+sansebastian:["San Sebastián del Oeste, Jalisco"],
+perula:["Punta Perula, Jalisco"],
+guayabitos:["Playa de Guayabitos, Nayarit"],
+guadalupe:["Parroquia de Nuestra Señora de Guadalupe, Puerto Vallarta","fiesta Virgen de Guadalupe Puerto Vallarta"],
+posadas:[null,"posadas piñatas México"],
+rois:[null,"rosca de reyes Día de Reyes México"]
+};
+/* Modifications de la liste (descriptions, activités retirées): stockées dans la base partagée, modifiables par les éditeurs. */
+var ov={},edit=false,DBH=null;
+function isOff(x){return !!(ov[x.id]&&ov[x.id].hidden)}
+function edsay(t){document.getElementById("edmsg").textContent=t}
+function saveOv(id,patch){
+  var cur=ov[id]||{},n={desc:cur.desc||"",hidden:!!cur.hidden};
+  for(var k in patch)n[k]=patch[k];
+  ov[id]=n;drawGrid();drawTable();
+  if(!DBH){edsay("Impossible d'enregistrer ici.");return}
+  DBH.doc("activites/"+id).set(n).then(function(){edsay("Enregistré.")},function(){edsay("L'enregistrement a échoué. Réessaie.")})
+}
+function editorBlock(x){
+  var w=document.createElement("div"),cur=ov[x.id]||{};w.className="editzone";
+  var l=document.createElement("label");l.className="edlabel";l.htmlFor="d-"+x.id;l.textContent="Description";
+  var ta=document.createElement("textarea");ta.id="d-"+x.id;ta.rows=3;ta.value=cur.desc||x.d;
+  var r=document.createElement("div");r.className="row";
+  var s=document.createElement("button");s.type="button";s.className="act alt";s.textContent="Enregistrer le texte";
+  s.onclick=function(){saveOv(x.id,{desc:ta.value.trim()})};
+  var h=document.createElement("button");h.type="button";h.className="act alt";h.textContent=isOff(x)?"Remettre dans la liste":"Retirer de la liste";
+  h.onclick=function(){saveOv(x.id,{hidden:!isOff(x)})};
+  r.appendChild(s);r.appendChild(h);w.appendChild(l);w.appendChild(ta);w.appendChild(r);return w
+}
+function lien(txt,url){var a=document.createElement("a");a.className="lien";a.href=url;a.target="_blank";a.rel="noopener";a.textContent=txt;return a}
+var VOTES={love:["😍","J'adore"],ok:["🙂","Pourquoi pas"],meh:["😕","Bof"]};
+var KEY="pv-votes-v1", filtre="Tout", nom="", db={};
+
+function load(){try{db=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){db={}}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){}}
+function norm(s){return s.trim().replace(/\s+/g," ")}
+function mine(){return (nom&&db[nom])||{}}
+
+function drawChips(){
+  var el=document.getElementById("chips");el.innerHTML="";
+  CATS.forEach(function(c){var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=c;
+    b.setAttribute("aria-pressed",c===filtre);b.onclick=function(){filtre=c;drawChips();drawGrid()};el.appendChild(b)});
+  var e=document.createElement("button");e.type="button";e.className="chip";e.textContent="À faire au début";
+  e.setAttribute("aria-pressed",filtre==="__early");e.onclick=function(){filtre="__early";drawChips();drawGrid()};el.appendChild(e);
+}
+function drawGrid(){
+  var g=document.getElementById("grille");g.innerHTML="";var m=mine();
+  A.filter(function(x){return (filtre==="Tout"||(filtre==="__early"?x.early:x.c===filtre))&&(edit||!isOff(x))}).forEach(function(x){
+    var c=document.createElement("article");c.className="card";
+    var h=document.createElement("h3");h.textContent=x.t;c.appendChild(h);
+    var tg=document.createElement("div");tg.className="tags";
+    [[x.c,""],[COST[x.cost][0],COST[x.cost][1]]].concat(x.early?[["À faire au début","early"]]:[]).forEach(function(p){
+      var s=document.createElement("span");s.className="tag "+p[1];s.textContent=p[0];tg.appendChild(s)});
+    c.appendChild(tg);
+    var p=document.createElement("p");p.textContent=(ov[x.id]&&ov[x.id].desc)||x.d;c.appendChild(p);
+    var q=Q[x.id]||[x.t+", Puerto Vallarta"];
+    var L=document.createElement("div");L.className="liens";
+    if(q[0]!==null)L.appendChild(lien("📍 Voir sur la carte",(q[0].indexOf("http")===0?q[0]:"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q[0]))));
+    L.appendChild(lien("📷 Voir des photos","https://www.google.com/search?tbm=isch&q="+encodeURIComponent(q[1]||q[0])));
+    c.appendChild(L);
+    var v=document.createElement("div");v.className="votes";
+    Object.keys(VOTES).forEach(function(k){
+      var b=document.createElement("button");b.type="button";b.className="v";b.dataset.v=k;
+      b.setAttribute("aria-pressed",m[x.id]===k);
+      b.innerHTML="<span aria-hidden='true'>"+VOTES[k][0]+"</span>"+VOTES[k][1];
+      b.onclick=function(){vote(x.id,k)};v.appendChild(b)});
+    c.appendChild(v);if(isOff(x))c.classList.add("off");if(edit)c.appendChild(editorBlock(x));g.appendChild(c)});
+}
+function vote(id,k){
+  if(!nom){var i=document.getElementById("nom");i.focus();say("Écris d'abord ton prénom en haut.");return}
+  db[nom]=db[nom]||{};
+  if(db[nom][id]===k)delete db[nom][id];else db[nom][id]=k;
+  save();drawGrid();drawTable();say("");
+}
+function say(t){document.getElementById("msg").textContent=t}
+function names(){return Object.keys(db).filter(function(n){return Object.keys(db[n]).length})}
+function score(id){var s=0;names().forEach(function(n){var v=db[n][id];if(v==="love")s+=2;else if(v==="ok")s+=1;else if(v==="meh")s-=1});return s}
+function drawTable(){
+  var ns=names(),el=document.getElementById("tableau");
+  document.getElementById("compte").textContent=nom?(Object.keys(mine()).length+" vote(s) pour "+nom):"";
+  if(!ns.length){el.innerHTML="<p class='empty'>Aucun vote pour l'instant.</p>";return}
+  var rows=A.filter(function(x){return !isOff(x)&&ns.some(function(n){return db[n][x.id]})}).sort(function(a,b){return score(b.id)-score(a.id)});
+  var t=document.createElement("table"),hd="<tr><th>Activité</th>"+ns.map(function(n){return "<th></th>"}).join("")+"<th>Points</th></tr>";
+  t.innerHTML=hd;var ths=t.querySelectorAll("th");ns.forEach(function(n,i){ths[i+1].textContent=n});
+  rows.forEach(function(x){var tr=document.createElement("tr");var td=document.createElement("td");td.textContent=x.t;tr.appendChild(td);
+    ns.forEach(function(n){var d=document.createElement("td");var v=db[n][x.id];d.textContent=v?VOTES[v][0]:"–";tr.appendChild(d)});
+    var s=document.createElement("td");s.textContent=score(x.id);tr.appendChild(s);t.appendChild(tr)});
+  el.innerHTML="";el.appendChild(t);
+}
+function summary(){
+  var ns=names();if(!ns.length)return "";
+  var out=["Votes activités Puerto Vallarta"];
+  ns.forEach(function(n){
+    var g={love:[],ok:[],meh:[]};A.forEach(function(x){var v=db[n][x.id];if(v&&!isOff(x))g[v].push(x.t)});
+    out.push("");out.push(n+":");
+    if(g.love.length)out.push("J'adore: "+g.love.join(", "));
+    if(g.ok.length)out.push("Pourquoi pas: "+g.ok.join(", "));
+    if(g.meh.length)out.push("Bof: "+g.meh.join(", "));
+  });return out.join("\n");
+}
+document.getElementById("nom").addEventListener("input",function(e){
+  nom=norm(e.target.value);try{localStorage.setItem(KEY+"-nom",nom)}catch(x){}drawGrid();drawTable()});
+document.getElementById("copier").onclick=function(){
+  var s=summary();if(!s){say("Il n'y a encore aucun vote à copier.");return}
+  var ok=function(){say("Résumé copié. Colle-le dans un message.")};
+  var fb=function(){var ta=document.createElement("textarea");ta.value=s;document.body.appendChild(ta);ta.select();
+    try{document.execCommand("copy")?ok():say("Copie impossible ici. Sélectionne le texte du tableau à la main.")}catch(e){say("Copie impossible ici.")}ta.remove()};
+  try{navigator.clipboard.writeText(s).then(ok,fb)}catch(e){fb()}};
+var armed=false;
+document.getElementById("effacer").onclick=function(){
+  if(!nom){say("Écris ton prénom pour effacer tes votes.");return}
+  var b=this;
+  if(!armed){armed=true;b.textContent="Confirmer: effacer les votes de "+nom;setTimeout(function(){armed=false;b.textContent="Effacer mes votes"},4000);return}
+  delete db[nom];save();armed=false;b.textContent="Effacer mes votes";drawGrid();drawTable();say("Votes de "+nom+" effacés.")};
+load();
+try{nom=localStorage.getItem(KEY+"-nom")||"";document.getElementById("nom").value=nom}catch(e){}
+drawChips();drawGrid();drawTable();
+
+</script>
+
+</body></html>
